@@ -1,8 +1,9 @@
 import glob
 import os
 
-from rd_reader import RDReader
-from rst_builder import RSTBuilder
+from src.rd_reader import RDReader
+from src.rst_builder import RSTBuilder
+from src.toctree_reader import TocTreeReader
 
 class ManReader:
     '''
@@ -28,16 +29,28 @@ class ManReader:
         '''
         rd_files = []
         for rd_file in glob.glob(os.path.join(filepath, "*.Rd")):
-            print("RD-file {}".format(rd_file))
             rd_files.append(RDReader(rd_file))
         return rd_files
 
-    def get_rst(self):
+    def write_rst(self, output_path, toctree_dir, url=""):
         '''
-        Create a list of RSTBuilder objects
+        Convert RDfiles and JSON files into RST files
+        
+        Parameter:
+        ---------
+        output_path: str
+            Location to save the RST files
+
+        toctree_dir: str
+            Input directory of the toctree JSON files
+
+        url: str
+            URL of the repository
         '''
-        rsts = []
+        for toctree_file in glob.glob(os.path.join(toctree_dir, "*.json")):
+            tt = TocTreeReader(toctree_file, self.rd_files)
+            tt.write_rst_file(output_path)
+
         for rd_file in self.rd_files:
-            rst = RSTBuilder(rd_file)
-            rsts.append(rst)
-        return rsts
+            rst = RSTBuilder(rd_file, url)
+            rst.write_rst_file(output_path)

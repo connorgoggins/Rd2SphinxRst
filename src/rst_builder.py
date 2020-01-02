@@ -2,16 +2,14 @@ import os
 import textwrap
 
 from tabulate import tabulate
-from rd_reader import StringCategory, ItemCategory, MethodCategory
+from src.rd_reader import StringCategory, ItemCategory, MethodCategory
 
 class RSTBuilder:
     '''
     RSTBuilder takes an RDReader to build an RST file from an RD file.
-    
-    
     '''
-    MXNET_LINK = "http://github.com/apache/incubator-mxnet/blob/master/"
-    def __init__(self, rd_reader):
+    def __init__(self, rd_reader, url=""):
+        self.url = url
         self.rd_reader = rd_reader
         self.rst_string = self.get_rst()
 
@@ -152,8 +150,8 @@ class RSTBuilder:
                 path = defined_in_string.split(" ")[-1]
                 path, line = path.split(":")
                 link_string = '''
-                Link to Source Code: {mxnet_link}{path}#{line}
-                '''.format(mxnet_link=self.MXNET_LINK, path=path, line=line)
+                Link to Source Code: {url}{path}#{line}
+                '''.format(url=self.url, path=path, line=line)
                 
                 return textwrap.dedent(link_string)
         return ""
