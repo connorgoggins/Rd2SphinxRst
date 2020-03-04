@@ -54,7 +54,7 @@ class TocTreeBuilder:
         if os.path.isdir(toctree_dir):
             if toctree_dir[-1] != "/":
                 toctree_dir += "/"
-            with open(toctree_dir + 'tt.json', 'w') as fp:
+            with open(toctree_dir + 'index.json', 'w') as fp:
                 json.dump(self.tt, fp)
         else:
             raise Exception("The provided path \"%s\" does not exist." % toctree_dir)
