@@ -1,4 +1,7 @@
 tabulate
+jupyter
+matplotlib
+notebook
 sphinx==2.4.0
 nbsphinx==0.4.3
 nbconvert==5.6.1
