@@ -1,3 +1,11 @@
 tabulate
 sphinx==2.4.0
 nbsphinx==0.4.3
+nbconvert==5.6.1
+recommonmark==0.6.0
+notedown==1.5.1
+pypandoc==1.4
+breathe==4.13.1
+mock==3.0.5
+awscli==1.16.266
+autodocsumm==0.1.12
