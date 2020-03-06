@@ -40,7 +40,7 @@ class TocTreeBuilder:
                                     "type": "General",
                                     "print_api": True,
                                     "functions": self.rd_filenames,
-                                    "toctree_properties": ":maxdepth: 2"
+                                    "toctree_properties": ":maxdepth: 5"
                                 }
                             ]
                         }
